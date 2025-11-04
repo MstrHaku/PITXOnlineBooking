@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PITXOnlineBooking")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e53e211a305500038b42911306c63f1cbe7e7d5")]
 [assembly: System.Reflection.AssemblyProductAttribute("PITXOnlineBooking")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PITXOnlineBooking")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

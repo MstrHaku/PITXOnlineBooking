@@ -1,0 +1,34 @@
+
+TICKET FORMAT
+
+	QR Code
+
+	Departure -- PITX
+	Destination -- Legazpi
+	Date & Time -- 11/2/2025 12:45 PM
+	Trip NO: EAMDO39
+	Fare -- 1,000.00
+	Gate -- G07
+	Bay -- D23
+
+	Ticket NO./OR : ERJAL181100000010
+	
+
+	THIS RECEIPT SHALL BE VALID FOR FIVE (5) YEARS FROM THE DATE OF PERMIT TO USE. THIS DOCUMENT IS NOT VALID FOR CLAIM OF INPUT TAX.
+
+	
+
+!!! Revise Booking - Passengers
+
+	In contact Passenger info add a birthdate and make the system automatically detect which one is an adult, child, or an infant based on the chosen passengers in the 
+	intenarary form.
+	
+
+!!! FOR RECEIPT
+
+	The QR code will show the additional information about the passengers
+
+
+!!! Expired booking
+
+	Show a pop up when the bus trip is passed the date departure date
