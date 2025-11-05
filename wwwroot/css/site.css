@@ -20,6 +20,7 @@
 
   --radius: 5px;
   --box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  --border: 1px solid var(--grey-border);
 
   --text-space: 1.5px
 }
@@ -53,6 +54,22 @@ body {
   overflow-x: hidden;
 }
 
+button {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  border-radius: var(--radius);
+  font-weight: var(--semibold);
+  font-family: "Open Sans", sans-serif;
+  font-size: 0.95rem;
+  color: white;
+}
+
+ul {
+  list-style: none;
+}
+
+/* HOME MAIN ***********************************************************************************************************************/
 /* NAVBAR */
 header {
   width: 100vw;
@@ -146,15 +163,9 @@ section {
 }
 
 .btn_con button {
-  cursor: pointer;
   background: var(--main-color-red);
-  border-radius: var(--radius);
   padding: 8px 19px;
   color: var(--white);
-  outline: none;
-  border: none;
-  font-size: 0.95rem;
-  font-weight: var(--semibold);
 }
 
 /* LIVE BUS SCHEDULE */
@@ -309,9 +320,306 @@ section {
   color: var(--main-color-red);
 }
 
+/* BOOKING ***********************************************************************************************************************/
+.booking {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.booking_con {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 45vh;
+}
+
+.booking_con_top {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+}
+
+.opacity_booking {
+  position: absolute;
+  background: var(--main-color-blue);
+  width: 100%;
+  height: 100%;
+  opacity: 0.25;
+  z-index: 2;
+}
+
+.pitxHubImg img {
+  position: absolute;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
 
 
-/* FOOTER */
+/* MODAL */
+.booking_modal_con {
+  background: white;
+  position: absolute;
+  top: 35%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  margin: 0px 10px;
+  width: fit-content;
+  align-self: center;
+  gap: 10px;
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow);
+}
+
+.booking_modal_con_top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.redLine {
+  border-bottom: 1px solid var(--main-color-red);
+  margin: 0px 220px;
+}
+
+.booking_modal_main {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.booking_modal_main_top {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+
+.booking_modal_main_top h3 {
+  color: var(--main-color-red);
+}
+
+.booking_modal_main_top span {
+  color: var(--main-color-blue);
+}
+
+.departureDestination_con {
+  display: flex;
+  gap: 10px;
+}
+
+.departureDestinationInput {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.departureDestination_top {
+  display: flex;
+  gap: 45px;
+}
+
+.departureDestination_top p {
+  flex: 1;
+  padding-left: 10px;
+}
+
+.departureDestination {
+  display: flex;
+  padding: 0px 10px;
+  border: var(--border);
+  border-radius: var(--radius);
+  align-items: center;
+  justify-content: center;
+}
+
+.departureDestination h4 {
+  flex: 1;
+  text-align: center;
+}
+
+.departureDestinationArrow {
+  display: flex;
+  align-items: center;
+}
+
+.checkTripBtn_con {
+  display: flex;
+  align-items: end;
+  padding-bottom: 5px;
+  width: 135px;
+}
+
+.checkTripBtn_con button {
+  background: var(--main-color-blue);
+  padding: 5px 10px;
+  color: var(--white);
+}
+
+
+.booking_modal_date {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking_modal_date_con {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  border: var(--border);
+  border-radius: 10px;
+  padding: 5px 15px;
+}
+
+.date_con {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-weight: var(--semibold);
+  font-size: 0.9rem;
+}
+
+.today {
+  color: var(--main-color-blue);
+  font-weight: var(--semibold);
+}
+
+.tomorrow {
+  color: var(--main-color-red);
+  font-weight: var(--semibold);
+}
+
+
+/* BUS LIST */
+.booking_bus_list_con {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  padding-top: 100px;
+  justify-content: center;
+  background: var(--white-background);
+}
+
+.booking_bus_list_con ul {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.booking_bus_list {
+  display: flex;
+  padding: 10px;
+  background: var(--white);
+  border-radius: var(--radius);
+  gap: 20px;
+}
+
+.booking_bus_list .redLine {
+  margin: 0;
+  border-right: 1px solid var(--main-color-red);
+}
+
+.booking_info_con {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.booking_info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.booking_info_departure {
+  display: flex;
+  gap: 10px;
+}
+
+.booking_info_bus_info {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.booking_info_bus_logo {
+  width: 30px;
+}
+
+.booking_info_bus_icon {
+  width: 30px;
+}
+
+.booking_info_bus_icon img {
+  border-radius: var(--radius);
+}
+
+.trip_info span {
+  font-weight: var(--semibold);
+}
+
+.time {
+  font-weight: var(--semibold);
+}
+
+.booking_info_destination {
+  display: flex;
+  gap: 10px;
+}
+
+.bus_pic_con {
+  display: flex;
+  gap: 5px;
+}
+
+.busPic {
+  width: 115px;
+}
+
+.busPic img {
+  border-radius: var(--radius);
+}
+
+.booking_price_con {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 190px;
+  justify-content: center;
+}
+
+.booking_price_con_info {
+  font-size: 0.75rem;
+}
+
+.price {
+  font-weight: var(--semibold);
+  font-size: 1rem;
+  text-align: end;
+}
+
+.bus_trip_book_btn_con {
+  display: flex;
+  justify-content: center;
+}
+
+.bus_trip_book_btn_con button {
+  background: var(--main-color-red);
+  padding: 3px 10px;
+}
+
+
+/* FOOTER ***********************************************************************************************************************/
 footer {
   width: 100vw;
   background: var(--footer-grey);

@@ -17,4 +17,9 @@ public class HomeController : Controller
     {
         return View();
     }
+
+    public IActionResult Booking()
+    {
+        return View();
+    }
 }
