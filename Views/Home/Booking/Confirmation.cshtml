@@ -1,0 +1,44 @@
+@{
+    ViewData["Title"] = "Confirmation";
+}
+
+<div class="confirmation">
+    <div class="booking_summary_con">
+        <div class="booking_timer_con">
+            <p>Please compute the booking within <span>00:30:00</span></p>
+        </div>
+
+        <div class="trip_summary_con">
+            <p>Trip Summary</p>
+            <div class="trip_summary_info">
+                <div class="trip_summary_departure">
+                    <p>Departure date</p>
+                    <div class="trip_summary_departure_info">
+                        <p><span>Mon, Nov, 2025, 06:00 am —</span> Paranaque Integrated Terminal Exchange, Manila - Legazpi, Grand Central Terminal</p>
+                    </div>
+                </div>
+
+                <div class="trip_summary_passenger">
+                    <p>Passengers information</p>
+                    <div class="passenger_list">
+                        <ul>
+                            <li>John Migz Reyes, child</li>
+                            <li>Miguel Reyes, adult</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="termsAndPolicy_con">
+        <p>By clicking the Confirm button below, I accept PITX <span id="termsOfUse">Terms of Use</span> and <span id="cancellationPolicy">Cancellation policy</span>, and confirm that I have read the <span id="privacyPolicy">Privacy Policy</span></p>
+    </div>
+</div>
+
+<script>
+    console.log("this is confirmation page");
+
+    const bookingMainCon = document.querySelector(".booking_main_con");
+    bookingMainCon.classList.toggle('inactive');
+</script>

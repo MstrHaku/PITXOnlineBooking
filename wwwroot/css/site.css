@@ -652,7 +652,7 @@ section {
 .booking_proc_modal_con {
   background: var(--white);
   border-radius: var(--radius);
-  height: var(--modal-height);
+  max-height: var(--modal-height);
   max-width: var(--modal-width);
   display: flex;
   flex-direction: column;
@@ -683,9 +683,13 @@ section {
 .booking_main_con {
   padding: 20px;
   overflow-y: auto;
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
+}
+
+.booking_main_con.inactive {
+  height: auto;
 }
 
 /* ITINERARY*/
@@ -989,18 +993,19 @@ section {
   padding: 0px 10px;
 }
 
-.trip_summary_departure {
+.trip_summary_info p {
+  font-weight: var(--semibold);
+}
+
+.trip_summary_info div {
   display: flex;
   flex-direction: column;
   padding-left: 10px;
 }
 
-.trip_summary_departure p {
-  font-weight: var(--semibold);
-}
-
 .trip_summary_departure_info {
   padding-left: 10px;
+
 }
 
 .trip_summary_departure_info p {
@@ -1244,6 +1249,41 @@ section {
   font-weight: var(--regular) !important;
   font-size: 0.95rem;
 }
+
+/* CONFIRMATION */
+.passenger_list {
+  margin-left: 15px;
+}
+
+.passenger_list ul {
+  list-style: unset;
+}
+
+.passenger_list li {
+  font-size: 0.95rem;
+}
+
+.termsAndPolicy_con {
+  display: flex;
+  padding-top: 20px;
+}
+
+.termsAndPolicy_con p {
+  font-size: 0.9rem;
+}
+
+#termsOfUse {
+  color: var(--main-color-blue);
+}
+
+#cancellationPolicy {
+  color: var(--main-color-blue);
+}
+
+#privacyPolicy {
+  color: var(--main-color-red);
+}
+
 
 
 /* FOOTER ***********************************************************************************************************************/
