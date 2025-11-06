@@ -32,3 +32,9 @@ TICKET FORMAT
 !!! Expired booking
 
 	Show a pop up when the bus trip is passed the date departure date
+
+
+
+	IMPORTANT!!!!
+
+		REMINDER!!! use ctrl + f to find /* CHANGE THIS */ comment!!

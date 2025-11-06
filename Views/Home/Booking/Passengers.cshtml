@@ -1,0 +1,140 @@
+@{
+    ViewData["Title"] = "Passengers";
+}
+
+<div class="passengers">
+
+    <div class="booking_summary_con">
+        <div class="booking_timer_con">
+            <p>Please compute the booking within <span>00:30:00</span></p>
+        </div>
+
+        <div class="trip_summary_con">
+            <p>Trip Summary</p>
+            <div class="trip_summary_info">
+                <div class="trip_summary_departure">
+                    <p>Departure date</p>
+                    <div class="trip_summary_departure_info">
+                        <p><span>Mon, Nov, 2025, 06:00 am —</span> Paranaque Integrated Terminal Exchange, Manila - Legazpi, Grand Central Terminal</p>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="passenger_detail_con">
+        <div class="passenger_contact_con">
+            <p>Contact Details</p>
+            <div class="passenger_contact_input">
+                <div class="passenger_mobile_input">
+                    <p>Mobile</p>
+                    <div class="mobile_input">
+                        <label for="mobile">+63</label>
+                        <input type="numerical" name="mobile" id="mobile">
+                    </div>
+                </div>
+
+                <div class="passenger_email_input">
+                    <p>Email</p>
+                    <input type="text" name="email" id="email">
+                </div>
+            </div>
+        </div>
+
+        <div class="passenger_info_con">
+            <div class="main_passenger_con">
+                <p>Main Passenger</p>
+                <div class="passenger_info_input_con">
+                    <div class="passenger_info_input">
+                        <p>First Name</p>
+                        <input type="text" name="firstName" id="firstName">
+                    </div>
+
+                    <div class="passenger_info_input">
+                        <p>Last Name</p>
+                        <input type="text" name="lastName" id="lastName">
+                    </div>
+                
+                    <div class="passenger_info_input">
+                        <p>Date of Birth</p>
+                        <input class="dateInput" type="date" name="firstName" id="firstName">
+                    </div>
+                </div>
+            </div>
+
+            <div class="extra_passenger_con">
+                <div class="remove_passenger_con">
+                    <div class="trash_icon">
+                        <img src="~/icons/trash.svg" alt="trash">
+                    </div>
+                    <p>Remove</p>
+                </div>
+                <p>Passenger 2</p>
+                <div class="passenger_info_input_con">
+                    <div class="passenger_info_input">
+                        <p>First Name</p>
+                        <input type="text" name="firstName" id="firstName">
+                    </div>
+
+                    <div class="passenger_info_input">
+                        <p>Last Name</p>
+                        <input type="text" name="lastName" id="lastName">
+                    </div>
+                
+                    <div class="passenger_info_input">
+                        <p>Date of Birth</p>
+                        <input class="dateInput" type="date" name="firstName" id="firstName">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="add_passenger_con">
+            <div class="add_passenger">
+                <div class="add_icon">
+                    <img src="~/icons/add.svg" alt="addIcon">
+                </div>
+                <p>Add a passenger</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="travel_insurance_con"> 
+        <p>Travel Insurance</p>
+
+        <div class="insurance_bus_img_con">
+            <div class="insurance_bus_img">
+                <img src="~/img/busImg.png" alt="busImg">
+            </div>
+        </div>
+
+        <div class="travel_insurance_info_con">
+            <div class="travel_insurance_input_con">
+                <p>Insurance Package</p>
+                <div class="insurance_input">
+                    <p>Package C = ₱148 (1 x 1 pax)</p> 
+                    <div class="dropdownArrow">
+                        <img src="~/icons/dropdownArrow.svg" alt="dropdownArrow">
+                    </div>
+                </div>
+
+                
+                <p class="motto_insurance">Travel with peace of mind.</p>
+            </div>
+
+            <div class="insurance_package_details_cons">
+                <p><span>Pack A</span> Personal Accident - <span>₱900,000</span> Medical Expenses - <span>₱90,000</span></p>
+                <p><span>Pack B</span> Personal Accident - <span>₱500,000</span> Medical Expenses - <span>₱50,000</span></p>
+                <p><span>Pack C</span> Personal Accident - <span>₱100,000</span> Medical Expenses - <span>₱100,000</span></p>
+            </div>
+
+            <p class="duration"><span>Duration:</span> 24 hours from the departure</p>
+        </div>
+    </div>
+
+</div>

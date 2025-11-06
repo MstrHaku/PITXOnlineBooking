@@ -7,6 +7,7 @@
   --white: #FFFFFF;
   --white-background: #F4F4F4;
   --grey-border: #808080;
+  --grey: #808080;
   --main-color-red: #EE3124;
   --main-color-blue: #315EC3;
   --light-blue: #007CFF;
@@ -22,7 +23,10 @@
   --box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   --border: 1px solid var(--grey-border);
 
-  --text-space: 1.5px
+  --text-space: 1.5px;
+
+  --modal-width: 573px;
+  --modal-height: 735px;
 }
 
 * {
@@ -67,6 +71,16 @@ button {
 
 ul {
   list-style: none;
+}
+
+
+input {
+  border-radius: var(--radius);
+  padding: 8px 10px;
+  border: var(--border);
+  font-size: 1rem;
+  font-weight: var(--semibold);
+  width: 100%;
 }
 
 /* HOME MAIN ***********************************************************************************************************************/
@@ -626,7 +640,6 @@ section {
   background-repeat: no-repeat;
   background-position: center;
   min-height: 100vh;
-  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -639,6 +652,8 @@ section {
 .booking_proc_modal_con {
   background: var(--white);
   border-radius: var(--radius);
+  height: var(--modal-height);
+  max-width: var(--modal-width);
   display: flex;
   flex-direction: column;
 }
@@ -667,6 +682,10 @@ section {
 
 .booking_main_con {
   padding: 20px;
+  overflow-y: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 /* ITINERARY*/
@@ -873,6 +892,7 @@ section {
 .booking_bot {
   display: flex;
   flex-direction: column;
+  margin-top: auto;
   gap: 20px;
   padding: 10px 20px;
   border-top:  1px solid var(--main-color-red);
@@ -924,6 +944,307 @@ section {
   width: 100%;
   padding: 5px 0px;
 }
+
+/* PASSENGERS */
+.passengers {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding-bottom: 10px;
+}
+
+.booking_summary_con {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-bottom: 1px solid var(--main-color-red);
+  padding-bottom: 10px;
+}
+
+.booking_timer_con p {
+  text-align: start;
+  font-weight: var(--semibold);
+  font-size: 0.95rem;
+}
+
+.booking_timer_con span {
+  color: var(--main-color-red);
+}
+
+.trip_summary_con {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.trip_summary_con p {
+  font-weight: var(--bold);
+}
+
+.trip_summary_info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0px 10px;
+}
+
+.trip_summary_departure {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+
+.trip_summary_departure p {
+  font-weight: var(--semibold);
+}
+
+.trip_summary_departure_info {
+  padding-left: 10px;
+}
+
+.trip_summary_departure_info p {
+  color: var(--grey);
+  font-size: 0.95rem;
+  font-weight: var(--regular);
+}
+
+.trip_summary_departure_info span {
+  font-weight: var(--semibold);
+  color: var(--black);
+}
+
+.passenger_detail_con {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-bottom: 1px solid var(--main-color-blue);
+  padding-bottom: 10px;
+}
+
+.passenger_contact_con {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-bottom: 1px solid var(--main-color-blue);
+  padding-bottom: 10px;
+}
+
+.passenger_contact_con p {
+  font-weight: var(--bold);
+}
+
+.passenger_contact_input {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+
+.passenger_contact_input p {
+  font-weight: var(--regular);
+  font-size: 0.95rem;
+}
+
+.passenger_mobile_input {
+  display: flex;
+  flex-direction: column;
+}
+
+.passenger_mobile_input input {
+  border: none;
+  padding: 0px 0px 0px 35px;
+}
+
+.mobile_input {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  border: var(--border);
+  border-radius: var(--radius);
+  position: relative;
+}
+
+.mobile_input label {
+  height: fit-content;
+  color: var(--grey);
+  font-weight: var(--semibold);
+  position: absolute;
+}
+
+.passenger_email_input {
+  display: flex;
+  flex-direction: column;
+}
+
+.passenger_info_con {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.passenger_info_con p {
+  font-weight: bold;
+}
+
+.main_passenger_con {
+  border-bottom: 1px solid var(--main-color-blue);
+  padding-bottom: 10px;
+}
+
+.extra_passenger_con {
+  display: flex;
+  flex-direction: column;
+}
+
+.dateInput {
+  width: fit-content;
+}
+
+.passenger_info_input_con {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  gap: 3px;
+}
+
+.passenger_info_input_con p {
+  font-weight: var(--regular);
+  font-size: 0.95rem;
+}
+
+.passenger_info_input {
+  display: flex;
+  flex-direction: column; 
+}
+
+.remove_passenger_con {
+  display: flex;
+  justify-content: start;
+  gap: 3px;
+}
+
+.remove_passenger_con p {
+  color: var(--grey);
+  font-weight: var(--regular);
+  font-size: 0.9rem;
+  text-decoration: underline;
+}
+
+.trash_icon {
+  display: flex;
+  align-items: center;
+  width: 15px;
+}
+
+.trash_icon img {
+  fill: var(--grey);
+}
+
+.add_passenger_con {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add_passenger {
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.add_passenger p {
+  font-weight: var(--semibold);
+}
+
+.add_icon {
+  display: flex;
+  align-items: center;
+  width: 20px;
+}
+
+.travel_insurance_con {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+  gap: 20px;
+}
+
+.travel_insurance_con p {
+  font-weight: var(--bold);
+}
+
+.insurance_bus_img_con {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.insurance_bus_img {
+  display: flex;
+  align-self: center;
+  width: 160px;
+}
+
+.travel_insurance_info_con {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.travel_insurance_info_con span {
+  font-weight: var(--semibold);
+}
+
+.travel_insurance_input_con {
+  display: flex;
+  flex-direction: column;
+}
+
+.travel_insurance_input_con p {
+  font-weight: var(--regular);
+  font-size: 0.95rem;
+}
+
+.motto_insurance {
+  color: var(--light-blue);
+  font-size: 0.9rem;
+}
+
+.insurance_input {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: var(--radius);
+  padding: 6px 10px;
+  border: var(--border);
+  position: relative;
+}
+
+.insurance_input_label p {
+  font-size: 1rem;
+}
+
+.dropdownArrow {
+  display: flex;
+  align-items: center;
+  width: 20px;
+}
+
+.insurance_package_details_cons {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.insurance_package_details_cons p {
+  font-weight: var(--regular);
+}
+
+.duration {
+  font-weight: var(--regular) !important;
+  font-size: 0.95rem;
+}
+
 
 /* FOOTER ***********************************************************************************************************************/
 footer {

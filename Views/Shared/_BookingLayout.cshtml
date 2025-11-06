@@ -25,7 +25,7 @@
         <div class="booking_proc">
             <div class="booking_proc_modal_con">
                 <div class="booking_top">
-                    <p>Itinerary</p>
+                    <p>@ViewBag.Title</p>
                     <div class="redLine"></div>
                     <p><span>Provincial Bus</span></p>
                 </div>
@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="booking_btn_con">
-                        <button onclick="location.href=`@Url.Action("Passengers", "Home")`">Next</button>
+                        <button onclick="location.href=`@Url.Action((string)@ViewBag.Page, "Home")`">Next</button>
                     </div>
                 </div>
             </div>
