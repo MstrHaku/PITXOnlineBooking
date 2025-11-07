@@ -41,14 +41,41 @@ if (page.textContent.toLowerCase() === "payment") {
 // POP UP
 const popUpCon = document.getElementById("popUpCon");
 const closeBtn = document.getElementById("closeBtn");
-let receiptPopUp;
-let successPayPopUp;
+
+// PASSENGER POP UP
+let passengerPopUp;
+let passengerPopUpDoneBtn;
+
+// BUS POP UP
 let busPicInsidePopUp;
 let busPicOutsidePopUp;
 
+// RECEIPT POP UP
+let receiptPopUp;
+let successPayPopUp;
 
-    // BUS PIC 
+
+    // ITINERARY
     if (page.textContent.toLowerCase() === "itinerary") {
+
+        //  PASSENGER POP UP
+        const passengerInput = document.getElementById("passengerInput");
+
+        passengerInput.addEventListener("click", () => {
+            passengerPopUp = document.getElementById("passengerPopUp");
+
+            passengerPopUp.classList.toggle("show");
+
+            // DONE BTN
+            passengerPopUpDoneBtn = document.getElementById("passengerPopUpDoneBtn");
+
+            passengerPopUpDoneBtn.addEventListener("click", () => {
+                passengerPopUp.classList.remove("show");
+            });
+        });
+
+
+        // BUS PIC
         const busInside = document.getElementById("busInside");
         const busOutside = document.getElementById("busOutside");
 
@@ -93,7 +120,7 @@ let busPicOutsidePopUp;
 closeBtn.addEventListener("click", () => {
     popUpCon.classList.remove("show");
 
-    if (page.textContent.toLocaleLowerCase() === "receipt") {
+    if (page.textContent.toLowerCase() === "receipt") {
         successPayPopUp.classList.remove("show");
         receiptPopUp.classList.remove("show");
     }
@@ -101,12 +128,12 @@ closeBtn.addEventListener("click", () => {
 
 popUpCon.addEventListener("click", () => {
     popUpCon.classList.remove("show");
-    if (page.textContent.toLocaleLowerCase() === "itinerary") {    
-        busPicOutsidePopUp.classList.remove("show");
+    if (page.textContent.toLowerCase() === "itinerary") {  
         busPicInsidePopUp.classList.remove("show");
+        busPicOutsidePopUp.classList.remove("show");
     }
 
-    if (page.textContent.toLocaleLowerCase() === "receipt") {
+    if (page.textContent.toLowerCase() === "receipt") {
         successPayPopUp.classList.remove("show");
         receiptPopUp.classList.remove("show");
     }
