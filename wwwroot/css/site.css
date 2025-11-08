@@ -43,6 +43,7 @@ html {
   font-size: 16px;
   font-family: "Open Sans", sans-serif;
   line-height: 1.5;
+  overflow-x: hidden;
 }
 
 img {
@@ -992,8 +993,6 @@ section {
   flex-direction: column;
   gap: 10px;
 }
-
-/* CHANGE THIS MAKE GAP AND PADDING CHANGE IN MEDIA QUERY */
 
 .itinerary_bus_img_con {
   display: flex;
