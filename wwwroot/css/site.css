@@ -27,6 +27,7 @@
 
   --modal-width: 573px;
   --modal-height: 735px;
+  --modal-height-phone: 500px;
 }
 
 * {
@@ -2012,6 +2013,36 @@ footer {
   .booking_bus_list_con {
     padding: 125px 10px 0px;
   }
+
+  @media (max-height: 1000px) {
+    .booking_bus_list_con {
+      padding: 105px 10px;
+    }
+  }
+
+  @media (max-height: 860px) {
+    .booking_bus_list_con {
+      padding: 125px 10px;
+    }
+  }
+
+  @media (max-height: 760px) {
+    .booking_bus_list_con {
+      padding: 135px 10px;
+    }
+  }
+
+  @media (max-height: 715px) {
+    .booking_bus_list_con {
+      padding: 155px 10px;
+    }
+  }
+
+  @media (max-height: 700px) {
+    .booking_bus_list_con {
+      padding: 165px 10px;
+    }
+  }
 }
 
 /* PHONES */
@@ -2029,6 +2060,158 @@ footer {
 
   .bus_icon_live_bus_sched {
     width: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  html {
+    font-size: 12px;
+  }
+
+  /* BOOKING */
+  .departureDestinationArrow {
+    width: 25px;
+  }
+
+  .booking_modal_date_con {
+    gap: 10px;
+    padding: 5px;
+  }
+
+  .booking_modal_con {
+    margin: 0px 0px 0px 10px;
+  }
+
+  @media (max-height: 1000px) {
+    .booking_bus_list_con {
+      padding: 70px 10px;
+    }
+  }
+
+  @media (max-height: 860px) {
+    .booking_bus_list_con {
+      padding: 90px 10px;
+    }
+  }
+
+  @media (max-height: 760px) {
+    .booking_bus_list_con {
+      padding: 95px 10px;
+    }
+  }
+
+  @media (max-height: 715px) {
+    .booking_bus_list_con {
+      padding: 115px 10px;
+    }
+  }
+
+  @media (max-height: 700px) {
+    .booking_bus_list_con {
+      padding: 125px 10px;
+    }
+  }
+
+  @media (max-height: 600px) {
+    .booking_bus_list_con {
+      padding: 135px 10px;
+    }
+  }
+
+  .booking_bus_list {
+    gap: 5px;
+  }
+
+  /* BOOKING PROCESS */
+  .booking_proc_modal_con {
+    max-height: var(--modal-height-phone);
+  }
+
+  /* ITINERARY */
+  .busPic_popUp {
+    width: 260px;
+  } 
+
+  /* PAYMENT METHOD */
+  .radioBtn {
+    width: 15px;
+  }
+
+  .maya_logo  {
+    width: 50px;
+  }
+
+  .gcash_logo {
+    width: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+
+  /* BOOKING */
+  @media (max-height: 1000px) {
+    .booking_bus_list_con {
+      padding: 60px 10px;
+    }
+  }
+
+  @media (max-height: 830px) {
+    .booking_bus_list_con {
+      padding: 80px 10px;
+    }
+  }
+
+  @media (max-height: 710px) {
+    .booking_bus_list_con {
+      padding: 95px 10px;
+    }
+  }
+
+  @media (max-height: 625px) {
+    .booking_bus_list_con {
+      padding: 125px 10px;
+    }
+  }
+
+  #laptopTabletBookingList {
+    display: none;
+  }
+
+  #phoneBookingList {
+    display: flex;
+  }
+
+  .booking_bus_list {
+    flex-direction: column;
+  }
+
+  .booking_price_con {
+    flex-direction: row;
+    max-width: none;
+    justify-content: end;
+  }
+
+  .booking_modal_con {
+    margin: 0px 10px;
+  }
+
+  /* ITINERARY */
+  .itinerary_bus_img_con {
+    gap: 50px;
+    padding: 0px 25px;
+  }
+}
+
+/* HIDE PHONE BOOKING LIST */
+@media (min-width: 600px) {
+
+  /* BOOKING */
+  #laptopTabletBookingList {
+    display: flex;
+  }
+
+  #phoneBookingList {
+    display: none; 
   }
 }
 
@@ -2058,86 +2241,6 @@ footer {
   }
 }
 
-@media (max-width: 767px) {
-  html {
-    font-size: 12px;
-  }
-
-  /* BOOKING */
-  .departureDestinationArrow {
-    width: 25px;
-  }
-
-  .booking_modal_date_con {
-    gap: 10px;
-    padding: 5px;
-  }
-
-  .booking_modal_con {
-    margin: 0px 0px 0px 10px;
-  }
-
-  .booking_bus_list_con {
-    padding: 100px 15px; 
-  }
-
-  .booking_bus_list {
-    gap: 5px;
-  }
-}
-
-@media (max-width: 600px) {
-
-  /* BOOKING */
-  .booking_bus_list_con {
-    padding: 65px 10px; 
-  }
-
-  #laptopTabletBookingList {
-    display: none;
-  }
-
-  #phoneBookingList {
-    display: flex;
-  }
-
-  .booking_bus_list {
-    flex-direction: column;
-  }
-
-  .booking_price_con {
-    flex-direction: row;
-    max-width: none;
-    justify-content: end;
-  }
-
-  .booking_modal_con {
-    margin: 0px 10px;
-  }
-
-  .booking_bus_list_con {
-    padding: 75px 15px; 
-  }
-
-  /* ITINERARY */
-  .itinerary_bus_img_con {
-    gap: 50px;
-    padding: 0px 25px;
-  }
-}
-
-/* HIDE PHONE BOOKING LIST */
-@media (min-width: 600px) {
-
-  /* BOOKING */
-  #laptopTabletBookingList {
-    display: flex;
-  }
-
-  #phoneBookingList {
-    display: none; 
-  }
-}
 
 @media (max-width: 500px) {
 
@@ -2146,8 +2249,28 @@ footer {
     margin: 0px 10px;
   }
 
-  .booking_bus_list_con {
-    padding: 75px 10px; 
+  @media (max-height: 1000px) {
+    .booking_bus_list_con {
+      padding: 60px 10px;
+    }
+  }
+
+  @media (max-height: 830px) {
+    .booking_bus_list_con {
+      padding: 80px 10px;
+    }
+  }
+
+  @media (max-height: 710px) {
+    .booking_bus_list_con {
+      padding: 95px 10px;
+    }
+  }
+
+  @media (max-height: 625px) {
+    .booking_bus_list_con {
+      padding: 125px 10px;
+    }
   }
 
   .booking_modal_con {
@@ -2172,19 +2295,45 @@ footer {
   }
 }
 
+
 @media (max-width: 470px) {
+
+  /* MAIN */
+  .pitxLogo {
+    width: 300px;
+  }
 
   /* BOOKING */
   .booking_modal_con {
     margin: 0px 10px;
   }
 
-  .booking_bus_list_con {
-    padding: 75px 10px; 
-  }
-
   .booking_modal_con {
     width: 400px;
+  }
+
+  @media (max-height: 1000px) {
+    .booking_bus_list_con {
+      padding: 80px 10px;
+    }
+  }
+
+  @media (max-height: 830px) {
+    .booking_bus_list_con {
+      padding: 100px 10px;
+    }
+  }
+
+  @media (max-height: 710px) {
+    .booking_bus_list_con {
+      padding: 115px 10px;
+    }
+  }
+
+  @media (max-height: 625px) {
+    .booking_bus_list_con {
+      padding: 135px 10px;
+    }
   }
 
   /* ITINERARY */
@@ -2214,5 +2363,173 @@ footer {
 
   .restroom_icon {
     width: 15px;
+  }
+}
+
+@media (max-width: 420px) {
+  /* MAIN */
+  .pitxLogo {
+    width: 250px;
+  }
+
+  .hero_introductory {
+    top: 35%;
+  }
+
+  .live_bus_schedule {
+    padding: 10px;
+  }
+
+  .bus_icon_live_bus_sched {
+    width: 30px;
+  }
+
+  .live_bus_schedule_top h1 {
+    font-size: 1.3rem;
+  }
+
+  .live_bus_schedule_date_con h1 {
+    font-size: 1.2rem;
+  }
+
+  .tbody {
+    font-size: 0.9rem;
+  }
+
+  .th {
+    padding: 0px 1px;
+    font-size: 0.9em;
+  }
+
+  /* BOOKING */
+  .booking_bus_list_con {
+    padding: 115px 10px;
+  }
+
+  .booking_modal_con {
+    width: 370px;
+    font-size: 0.9rem;
+  }
+
+  .departureDestination_top p {
+    font-size: 0.9em;
+  }
+
+  .departureDestination h4 {
+    font-size: 0.9em;
+  }
+
+  .checkTripBtn_con {
+    width: 100px;
+  }
+
+  .checkTripBtn_con button {
+    font-size: 0.9em;
+  }
+
+  .booking_modal_date_con {
+    gap: 7px;
+    font-size: 0.9em;
+  } 
+
+  .date_con {
+    font-size: 0.85em;
+  }
+
+  @media (max-height: 1000px) {
+    .booking_bus_list_con {
+      padding: 35px 10px;
+    }
+  }
+
+  @media (max-height: 880px) {
+    .booking_bus_list_con {
+      padding: 55px 10px;
+    }
+  }
+
+  @media (max-height: 770px) {
+    .booking_bus_list_con {
+      padding: 65px 10px;
+    }
+  }
+
+  @media (max-height: 740px) {
+    .booking_bus_list_con {
+      padding: 75px 10px;
+    }
+  }
+
+  @media (max-height: 670px) {
+    .booking_bus_list_con {
+      padding: 95px 10px;
+    }
+  }
+
+  .booking_info_bus_logo {
+    width: 25px;
+  }
+
+  .booking_bus_list {
+    font-size: 0.9em;
+  }
+
+  .booking_info_bus_icon {
+    width: 25px;
+  }
+
+  .busPic {
+    width: 100px;
+  }
+
+}
+
+@media (max-width: 400px) {
+
+  /* BOOKING */
+  .booking_modal_con {
+    width: 325px;
+  }
+
+  .checkTripBtn_con button {
+    font-size: 0.8em;
+  }
+
+  /* ITINERARY */
+  .itinerary_bus_img_con {
+    gap: 30px;
+    padding: 0px 5px;
+  }
+
+  .itinerary_bus_pic_con .busPic {
+    width: 100px;
+  }
+
+  .busPic_popUp {
+    width: 210px;
+  }
+
+}
+
+@media (max-width: 340px) {
+  /* MAIN */
+  .tbody {
+    gap: 3px;
+    font-size: 0.85rem;
+  }
+
+  .live_bus_schedule_top h1 {
+    font-size: 1.1rem;
+  }
+
+  /* BOOKING */
+  .booking_modal_con{
+    width: 315px;
+    padding: 10px;
+  }
+
+  /* ITINERARY */
+  .itinerary_bus_img_con  {
+    gap: 0px;
   }
 }
