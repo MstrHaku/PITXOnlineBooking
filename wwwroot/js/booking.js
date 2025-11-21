@@ -573,8 +573,8 @@ if (page) {
                 console.log("totalPrice", insurance);
                 const discountPrice = (totalPriceUpdate * 0.20) * discount;
                 console.log("discount price: ", discountPrice, "price per pass: ", totalPriceUpdate); // REMOVE THIS
-                this.finalPrice = (totalPriceUpdate * numOfPassenger) - discountPrice;
-                totalPrice.textContent = this.finalPrice.toFixed(0);
+                this.finalPrice = Math.round((totalPriceUpdate * numOfPassenger) - discountPrice);
+                totalPrice.textContent = this.finalPrice;
             }
 
             // UPDATE PRICE (INSURANCE)
@@ -584,8 +584,8 @@ if (page) {
                 if (discount > 0) {
                     this.insurancePrice = price;
                     const discountPrice = this.insurancePrice * 0.20;
-                    this.finalPrice = (this.insurancePrice - discountPrice) * numOfPassenger;
-                    totalPrice.textContent = this.finalPrice.toFixed(0);
+                    this.finalPrice = Math.round((this.insurancePrice - discountPrice) * numOfPassenger);
+                    totalPrice.textContent = this.finalPrice;
                 } else {
                     this.insurancePrice = price;
                     this.finalPrice = this.insurancePrice * numOfPassenger;
