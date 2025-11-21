@@ -99,7 +99,7 @@ public class HomeController : Controller
         var trip = _context.BusTrip.FirstOrDefault(b => b.Id == randomTrip);
 
         // BUS INFO
-        int tripBusId = trip!.BusId;
+        int tripBusId = trip!.BusId;    
         var busInfo = _context.Bus.FirstOrDefault(b => b.Id == tripBusId);
 
         // TRIP DATE
