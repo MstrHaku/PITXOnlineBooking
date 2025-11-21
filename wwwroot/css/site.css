@@ -145,7 +145,8 @@ main {
 }
 
 section {
-  height: 100vh;
+  max-height: fit-content;
+  min-height: 100vh;
   width: 100%;
 }
 
@@ -216,7 +217,6 @@ section {
 
 /* LIVE BUS SCHEDULE */
 .live_bus_sched_sec {
-  height: 100vh;
   padding: 40px;
 }
 
