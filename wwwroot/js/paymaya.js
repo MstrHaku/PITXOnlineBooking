@@ -11,7 +11,7 @@ if (paymentFormCon) {
         amountError.textContent = "";
 
         const form = event.target;
-        const totalAmount = parseInt(document.getElementById("totalAmount").value) || 0;
+        const totalAmount = parseInt(document.getElementById("totalAmount").textContent) || 0;
 
         try {
             const response = await fetch(form.action, {
@@ -34,8 +34,8 @@ if (paymentFormCon) {
                 paymayaBtn.addEventListener("click", () => {
                     location.href = url;
                 });
-            } else if (data.url) {
-                window.location.href = data.url;
+            } else if (data.redirect) {
+                window.location.href = data.redirect;
             }
         } 
         catch (err) {

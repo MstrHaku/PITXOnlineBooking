@@ -30,7 +30,6 @@ namespace PITXOnlineBooking.Models
         [Column(TypeName = "date")]
         public required DateTime BirthDate { get; set; }
 
-        [Required]
         public int PassengersId { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;

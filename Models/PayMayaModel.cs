@@ -7,6 +7,6 @@ namespace PITXOnlineBooking
         public int AvailBalance { get; set; }
         public int Amount { get; set; }
 
-        public DateTime CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

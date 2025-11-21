@@ -1,4 +1,5 @@
 using PITXOnlineBooking;
+using PITXOnlineBooking.Data;
 
 public class BookingTripCleanupService : IHostedService, IDisposable
 {

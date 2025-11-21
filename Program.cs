@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PITXOnlineBooking;
+using PITXOnlineBooking.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

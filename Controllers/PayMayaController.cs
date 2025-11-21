@@ -1,21 +1,15 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-//using PITXOnlineBooking.Data;
-//using PITXOnlineBooking.DTO;
+using PITXOnlineBooking.Data;
+using PITXOnlineBooking.DTO;
 using PITXOnlineBooking.Models;
 
 namespace PITXOnlineBooking.Controllers;
 
-public class PayMayaController : Controller
+public class PayMayaController(ILogger<PayMayaController> logger, ApplicationDbContext context) : Controller
 {
-    private readonly ILogger<PayMayaController> _logger;
-    //private readonly ApplicationDbContext _context;
-
-    public PayMayaController(ILogger<PayMayaController> logger /*, ApplicationDbContext context*/)
-    {
-        _logger = logger;
-        //_context = context;
-    }
+    private readonly ILogger<PayMayaController> _logger = logger;
+    private readonly ApplicationDbContext _context = context;
 
     public IActionResult PayMayaMain()
     {
@@ -29,29 +23,29 @@ public class PayMayaController : Controller
 
     public IActionResult PayMayaDetails()
     {
-        //var payment = _context.MayaTable.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
-        /*var vm = new ViewModels
+        var payment = _context.PayMaya.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
+        var vm = new ViewModels
         {
-            Maya = payment ?? new MayaModel()
-        };*/
-        return View(/*vm*/);
+            PayMaya = payment ?? new PayMayaModel()
+        };
+
+        return View(vm);
     }
 
     public IActionResult PayMayaSuccess()
     {
-        //var payment = _context.MayaTable.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
-        /*var vm = new ViewModels
+        var payment = _context.PayMaya.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
+        var vm = new ViewModels
         {
-            Maya = payment ?? new MayaModel()
-        };*/
-        return View(/*vm*/);
+            PayMaya = payment ?? new PayMayaModel()
+        };
+        return View(vm);
     }
 
-    /*
     [HttpPost]
-    public IActionResult SendData([FromBody] MayaModel availBalance)
+    public IActionResult SendData([FromBody] PayMayaModel availBalance)
     {
-        _context.MayaTable.Add(availBalance);
+        _context.PayMaya.Add(availBalance);
         _context.SaveChanges();
 
         return Json(new { success = true, message = "Data saved successfully" });
@@ -60,137 +54,75 @@ public class PayMayaController : Controller
     [HttpPost]
     public IActionResult GetAvailBalance([FromBody] PaymentRequest amount)
     {
-        Console.WriteLine("Button has been clicked");
+        Console.WriteLine("Accessed Maya Table"); // REMOVE THIS
+        var PayMaya = _context.PayMaya.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
 
-        var latest = _context.MayaTable.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
-
-        // COPY THIS TO GCASH
-        var remBalance = _context.RemBalanceTable.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
-
-        if (latest == null)
+        if (PayMaya == null)
         {
             Console.WriteLine("Empty Table");
         }
         else
         {
-            if (latest.AvailBalance > 0)
+            if (PayMaya.AvailBalance > 0)
             {
-                if (latest.Amount > latest.AvailBalance)
+                if (PayMaya.Amount > PayMaya.AvailBalance)
                 {
                     return BadRequest(new { message = "Amount exceeded!" });
                 }
                 else
                 {
-                    var newBalance = latest.AvailBalance - latest.Amount;
+                    var newBalance = PayMaya.AvailBalance - PayMaya.Amount;
 
-                    var sendNewBalance = new MayaModel
-                    {
-                        AvailBalance = newBalance,
-                        Amount = latest.Amount
-                    };
-
-                    _context.MayaTable.Add(sendNewBalance);
-
-                    // CHECKS IF THE NEW BALANCE WILL EQUAL TO 0 AND UPDATE THE BALANCE TABLE
+                    // CHECKS IF PayMaya TABLE AVAILBALANCE COLUMN IS 0
                     if (newBalance <= 0)
                     {
                         var balance = 10000;
 
-                        var updatedBalance = new MayaModel
+                        var updatePayMayaBalance = new PayMayaModel
                         {
                             AvailBalance = balance,
-                            Amount = latest.Amount
+                            Amount = PayMaya.Amount
                         };
 
-                        _context.MayaTable.Add(updatedBalance);
+                        _context.PayMaya.Add(updatePayMayaBalance);
+
+                        return Ok( new { message = "Maya Balance update", redirect = Url.Action("PayMayaMain", "PayMaya")});
                     }
+                    
 
-
-                    // COPY THIS TO GCASH
-                    // UPDATE REMAINING BALANCE ON REM BALANCE TABLE
-                    var newRemBalance = (remBalance?.Balance ?? 0) - latest.Amount;
-
-                    var updateRemBalance = new RemBalanceModel
+                    var sendNewBalance = new PayMayaModel
                     {
-                        Balance = newRemBalance
+                        AvailBalance = newBalance,
+                        Amount = PayMaya.Amount
                     };
 
-                    _context.RemBalanceTable.Add(updateRemBalance);
-
-                    // CHECKS IF REMAINING BALANCE IS 0 AND UPDATES BALANCE
-                    if (newRemBalance <= 0)
-                    {
-                        var balance = 10000;
-
-                        var updatedRemBalance = new RemBalanceModel
-                        {
-                            Balance = balance
-                        };
-
-                        _context.RemBalanceTable.Add(updatedRemBalance);
-                    }
-
-                    // PUT THE DATA TO THE TRANSACTIOM TABLE
-                    var transactionTable = new TransactionModel
-                    {
-                        Amount = latest.Amount,
-                        CreatedAt = latest.CreatedAt
-                    };
-
-                    _context.TransactionTable.Add(transactionTable);
+                    _context.PayMaya.Add(sendNewBalance);
                     _context.SaveChanges();
 
-                    // PAYMENT SCHED
-                    var payments = _context.TransactionTable.OrderBy(p => p.CreatedAt).ToList();
+                    Console.WriteLine("Success");
 
-                    var schedules = _context.PaymentSchedTable.OrderBy(p => p.CreatedAt).ToList();
-
-                    int totalPayment = latest.Amount;
-                    foreach (var s in schedules.ToList())
-                    {
-                        if (totalPayment >= s.Amount)
-                        {
-                            totalPayment -= s.Amount;
-                            s.Amount = 0;
-
-                            _context.PaymentSchedTable.Remove(s);
-                        }
-                        else
-                        {
-                            s.Amount -= totalPayment;
-                            totalPayment = 0;
-
-                            _context.PaymentSchedTable.Update(s);
-                        }
-
-                        if (totalPayment <= 0)
-                            break;
-                    }
-
-                    _context.SaveChanges();
-
-                    var url = Url.Action("PayMayaSuccess", "PayMaya");
-                    return Ok(new { message = "Database saved", url });   
+                    return Ok( new { message = "Successful payment", redirect = Url.Action("PayMayaSuccess", "PayMaya")});
                 }
-            } 
+            }
             else
             {
                 var balance = 10000;
 
-                var updatedBalance = new MayaModel
+                var updateAvailBalance = new PayMayaModel
                 {
                     AvailBalance = balance,
-                    Amount = latest.Amount
+                    Amount = PayMaya.Amount
                 };
 
-                _context.MayaTable.Add(updatedBalance);
-                Console.WriteLine("Updated PayMaya balance to 10,000");
+                _context.PayMaya.Add(updateAvailBalance);
+                _context.SaveChanges();
+                Console.WriteLine("Update PayMaya balance to 10,000"); // REMOVE THIS
+
+                return Ok( new { message = "Maya Balance update", redirect = Url.Action("PayMayaMain", "PayMaya")});
             }
-            
         }
 
 
-        return Ok( new { message = "Form received"});
+        return Ok( new { message = "Maya Balance update", redirect = Url.Action("PayMayaMain", "PayMaya")});
     }
-    */
 }

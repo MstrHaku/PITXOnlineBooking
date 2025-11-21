@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PITXOnlineBooking;
+using PITXOnlineBooking.Data;
 
 #nullable disable
 
@@ -237,6 +237,9 @@ namespace PITXOnlineBooking.Migrations
                         .IsRequired()
                         .HasColumnType("longtext")
                         .HasColumnName("lastname");
+
+                    b.Property<int>("PassengerId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

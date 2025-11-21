@@ -12,7 +12,7 @@
         <div class="receipt_main">
             <div class="receipt_main_con_top">
                 <p class="receipt_head">Information</p>
-                <p><span>Ticket NO./OR :</span> ERJAL181100000010</p>
+                <p><span>Ticket NO./OR :</span> <span class="ticketNo"></span></p>
             </div>
             
             <div class="receipt_information_con">
@@ -24,43 +24,43 @@
 
                     <div class="receipt_info">
                         <p class="info_head">Destination</p>
-                        <p>Legazpi, Grand Central Terminal</p>
+                        <p class="destination"></p>
                     </div>
                 </div>
 
                 <div>
                     <div class="receipt_info">
                         <p class="info_head">Departure Date</p>
-                        <p>Mon, Nov 3, 2025, 06:00 am</p>
+                        <p class="departureTime">Mon, Nov 3, 2025, 06:00 am</p>
                     </div>
 
                     <div class="receipt_info">
                         <p class="info_head">Trip No#</p>
-                        <p>EAMD039</p>
+                        <p class="tripNo"></p>
                     </div>
                 </div>
 
                 <div>
                     <div class="receipt_info">
                         <p class="info_head">Gate</p>
-                        <p>G07</p>
+                        <p class="gate"></p>
                     </div>
 
                     <div class="receipt_info">
                         <p class="info_head">Bay</p>
-                        <p>D23</p>
+                        <p class="bay"></p>
                     </div>
                 </div>
 
                 <div>
                     <div class="receipt_info">
                         <p class="info_head">Date Booked</p>
-                        <p>11/2/2025 12:45 pm</p>
+                        <p class="dateBooked"></p>
                     </div>
 
                     <div class="receipt_info">
                         <p class="info_head">Fare</p>
-                        <p>₱1,979.00</p>
+                        <p>₱<span class="totalPrice"></span></p>
                     </div>
                 </div>
             </div>
@@ -76,24 +76,6 @@
 </div>
 
 <div class="booking_bot">
-    <div class="total_con" id="totalCon">
-        <div class="total">
-            <p><span>Total</span></p>
-            <p>₱1000 @*ViewBag.TripJson.Price*@</p>
-        </div>
-
-        <div class="subtotal">    
-            <div class="insurance">
-                <p>Insurance</p>
-                <p>₱148</p>
-            </div>
-
-            <div class="taxes_and_fees">
-                <p>Taxes and fees</p>
-                <p>₱6</p>
-            </div>
-        </div>
-    </div>
 
     <div class="booking_btn_con" id="bookingBtnCon">
         <button id="homeBtn" class="homeBtn" onclick="location.href=`@Url.Action("Main", "Home")`">Back to home</button>
@@ -109,7 +91,7 @@
             <p><span class="redText">Thank you, </span><span class="blueText">friend!</span></p>
             <div class="redLine"></div>
         </div>
-        <p>Your payment of ₱1,979.00 has been successfully received</p>
+        <p>Your payment of ₱<span class="totalPrice"></span> has been successfully received</p>
         <p class="safeTripMotto">Have a safe trip by <span class="blueText">PI</span><span class="redText">TX</span></p>
     </div>
 
@@ -124,12 +106,13 @@
         <div class="receipt_popUp_con">
             <div class="receipt_popUp_main">
                 <div class="receipt_popUp_main_top">
-                    <p><span>Ticket NO./OR</span> : ERJAL181100000010</p>
+                    <p><span>Ticket NO./OR</span> : <span class="ticketNo popUpReceipt"></span></p>
                     <div class="receipt_popUp_passenger_info">
                         <p>Passengers Information</p>
                         <ul>
-                            <li>John Migz Reyes, child</li>
-                            <li>Miguel Reyes, adult</li>
+                            <li> <span id="mainPass"></span>, <span id="mainPassAgeGroup"></span></li>
+                            <ul id="passengerList">
+                            </ul>
                         </ul>
                     </div>
                 </div>
@@ -139,15 +122,18 @@
                     <div class="receipt_popUp_trip_info">
                         <div class="receipt_popUp_trip_info_det">
                             <p class="receipt_popUp_heading">Departure date</p>
-                            <p class="receipt_popUp_info"> <span>Mon, Nov 3, 2025, 06:00 am —</span> Paranaque Integrated Terminal Exchange, Manila - Legazpi, Grand Central Terminal</p>
+                            <p class="receipt_popUp_info"> <span class="departureTime"></span> — Paranaque Integrated Terminal Exchange, Manila - <span id="desPopUpReceipt" class="destination popUpReceipt"></span></p>
                         </div>
 
                         <div class="receipt_popUp_trip_info_det">
                             <p class="receipt_popUp_heading">Payment Method</p>
                             <div class="receipt_popUp_pay_method_con">
-                                <p>PayMaya</p>
-                                <div class="receipt_popUp_payment_logo">
+                                <p id="paymentMethod">PayMaya</p>
+                                <div class="receipt_popUp_payment_logo maya hide" id="maya">
                                     <img src="~/img/mayaLogo.png" alt="mayaLogo">
+                                </div>
+                                <div class="receipt_popUp_payment_logo gcash hide" id="gcash">
+                                    <img src="~/img/gcashLogo.png" alt="gcashLogo">
                                 </div>
                             </div>
                         </div>
@@ -166,43 +152,43 @@
 
                             <div class="receipt_info">
                                 <p class="info_head">Destination</p>
-                                <p>Legazpi, Grand Central Terminal</p>
+                                <p class="destination"></p>
                             </div>
                         </div>
 
                         <div>
                             <div class="receipt_info">
                                 <p class="info_head">Departure Date</p>
-                                <p>Mon, Nov 3, 2025, 06:00 am</p>
+                                <p class="departureTime"></p>
                             </div>
 
                             <div class="receipt_info">
                                 <p class="info_head">Trip No#</p>
-                                <p>EAMD039</p>
+                                <p class="tripNo"></p>
                             </div>
                         </div>
 
                         <div>
                             <div class="receipt_info">
                                 <p class="info_head">Gate</p>
-                                <p>G07</p>
+                                <p class="gate"></p>
                             </div>
 
                             <div class="receipt_info">
                                 <p class="info_head">Bay</p>
-                                <p>D23</p>
+                                <p class="bay"></p>
                             </div>
                         </div>
 
                         <div>
                             <div class="receipt_info">
                                 <p class="info_head">Date Booked</p>
-                                <p>11/2/2025 12:45 pm</p>
+                                <p class="dateBooked"></p>
                             </div>
 
                             <div class="receipt_info">
                                 <p class="info_head">Fare</p>
-                                <p>₱1,979.00</p>
+                                <p>₱ <span class="totalPrice"></span></p>
                             </div>
                         </div>
                     </div>

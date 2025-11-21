@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PITXOnlineBooking;
 using PITXOnlineBooking.Data;
 
 #nullable disable
@@ -13,8 +12,8 @@ using PITXOnlineBooking.Data;
 namespace PITXOnlineBooking.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251112163025_FixBusTripTimeNotShowing")]
-    partial class FixBusTripTimeNotShowing
+    [Migration("20251121064807_UpdatedBookedTripBookedDate")]
+    partial class UpdatedBookedTripBookedDate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,6 +75,10 @@ namespace PITXOnlineBooking.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("BusLogo")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime(6)");
 
@@ -100,13 +103,16 @@ namespace PITXOnlineBooking.Migrations
                     b.ToTable("Bus");
                 });
 
-            modelBuilder.Entity("PITXOnlineBooking.Models.BusTripTimeModel", b =>
+            modelBuilder.Entity("PITXOnlineBooking.Models.BusTripModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BusId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Departure")
                         .IsRequired()
@@ -116,12 +122,15 @@ namespace PITXOnlineBooking.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<DateTime>("TotalTripTime")
-                        .HasColumnType("datetime(6)");
+                    b.Property<decimal>("TotalTripTime")
+                        .HasColumnType("decimal(65,30)");
+
+                    b.Property<int>("TripPrice")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("BusTripTime");
+                    b.ToTable("BusTrip");
                 });
 
             modelBuilder.Entity("PITXOnlineBooking.Models.GCashModel", b =>
@@ -215,7 +224,7 @@ namespace PITXOnlineBooking.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("BusId")
+                    b.Property<int>("BusTripId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -235,7 +244,10 @@ namespace PITXOnlineBooking.Migrations
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("TotalTripTime")
+                    b.Property<TimeSpan>("TotalTripTime")
+                        .HasColumnType("TIME");
+
+                    b.Property<DateTime>("TripDate")
                         .HasColumnType("datetime(6)");
 
                     b.Property<string>("TripNo")

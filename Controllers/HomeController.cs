@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Text.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PITXOnlineBooking.Data;
 using PITXOnlineBooking.DTO;
 using PITXOnlineBooking.Models;
 
@@ -88,6 +89,7 @@ public class HomeController : Controller
     public IActionResult Receipt()
     {
         ViewBag.Title = "Receipt";
+
         return View("Booking/Receipt");
     }
 
@@ -212,5 +214,218 @@ public class HomeController : Controller
         return Json(new { redirectUrl = Url.Action("Itinerary", "Home", new { id = tripId.TripId}),
             tripId = trip
         });
+    }
+
+    [HttpPost]
+    public IActionResult SubmitPayment([FromBody] PaymentRequest req)
+    {
+        if (req.PaymentMethod == "gcash")
+        {
+            // GCASH AMOUNT
+            var gcashTable = _context.GCash.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
+
+            if (gcashTable == null)
+            {
+                var balance = 10000;
+
+                var updateAvailBalance = new GCashModel
+                {
+                    AvailableBalance = balance,
+                    Amount = req.Amount
+                };
+
+                _context.GCash.Add(updateAvailBalance);
+                _context.SaveChanges();
+
+                return Ok( new { message = "GCash Balance update", redirect = Url.Action("GCashMain", "Gcash")});
+            }
+            else
+            {
+                if (gcashTable.AvailableBalance > 0)
+                {   
+                    var sendAmount = new GCashModel
+                    {
+                        AvailableBalance = gcashTable.AvailableBalance,
+                        Amount = req.Amount  
+                    };
+
+                    _context.Add(sendAmount);
+                    _context.SaveChanges();
+
+                    return Ok( new { message = "GCash Balance is sufficient", redirect = Url.Action("GCashMain", "Gcash")});
+                }
+                else
+                {
+                    var balance = 10000;
+
+                    var updateAvailBalance = new GCashModel
+                    {
+                        AvailableBalance = balance,
+                        Amount = req.Amount
+                    };
+
+                    _context.GCash.Add(updateAvailBalance);
+                    _context.SaveChanges();
+                    Console.WriteLine("Update GCash balance to 10,000"); // REMOVE THIS
+
+                    return Ok( new { message = "GCash Balance update", redirect = Url.Action("GCashMain", "Gcash")});
+                }
+            }    
+        } else if (req.PaymentMethod == "maya")
+        {
+            // MAYA AMOUNT
+            var mayaTable = _context.PayMaya.OrderByDescending(p => p.CreatedAt).FirstOrDefault();
+
+            if (mayaTable == null)
+            {
+                var balance = 10000;
+
+                var updateAvailBalance = new PayMayaModel
+                {
+                    AvailBalance = balance,
+                    Amount = req.Amount
+                };
+
+                _context.PayMaya.Add(updateAvailBalance);
+                _context.SaveChanges();
+
+                return Ok( new { message = "Maya Balance update", redirect = Url.Action("PayMayaMain", "PayMaya")});
+            } 
+            else
+            {
+                if (mayaTable.AvailBalance > 0)
+                {
+                    var sendAmount = new PayMayaModel
+                    {
+                        AvailBalance = mayaTable.AvailBalance,
+                        Amount = req.Amount
+                    };
+
+                    _context.PayMaya.Add(sendAmount);
+                    _context.SaveChanges();
+
+                    return Ok( new { message = "Maya Balance sufficient", redirect = Url.Action("PayMayaMain", "PayMaya")});
+                }
+                else
+                {
+                    var balance = 10000;
+
+                    var updateAvailBalance = new PayMayaModel
+                    {
+                        AvailBalance = balance,
+                        Amount = req.Amount
+                    };
+
+                    _context.PayMaya.Add(updateAvailBalance);
+                    _context.SaveChanges();
+                    Console.WriteLine("Update Maya balance to 10,000"); // REMOVE THIS
+
+                    return Ok( new { message = "Maya Balance update", redirect = Url.Action("PayMayaMain", "PayMaya")});
+                }
+            }    
+        }
+
+        return Ok(new { message = "No Payment method chosen"});
+    } 
+
+    [HttpPost] 
+    public IActionResult SendBookedTrip([FromBody] BookedTripRequest req)
+    {
+        var BookedTrip = new BookedTripModel
+        {
+            TicketNo = req.TicketNo,
+            UserId = req.UserId,
+            PassengerNo = req.PassengerNo,
+            TripId = req.TripId,
+            InsuranceType = req.InsuranceType,
+            PaymentMethod = req.PaymentMethod,
+            TotalPrice = req.TotalPrice
+        };
+
+        _context.BookedTrip.Add(BookedTrip);
+        _context.SaveChanges();
+
+        return Ok(new { message = "Data has been stored"});
+    }
+
+    [HttpPost]
+    public IActionResult SendMainPass([FromBody] User mainPass)
+    {
+        DateTime birthDate = DateTime.Parse(mainPass.BirthDate);
+
+        var User = new UserModel
+        {
+            Email = mainPass.Email,
+            Mobile = mainPass.Mobile,
+            FirstName = mainPass.FirstName,
+            LastName = mainPass.LastName,
+            AgeGroup = mainPass.AgeGroup,
+            BirthDate = birthDate
+        };
+
+        _context.User.Add(User);
+        _context.SaveChanges();
+
+        User.PassengersId = User.Id;
+        _context.SaveChanges();
+
+        return Ok(new { message = "Main passenger inserted", passId = User.PassengersId});
+    }
+
+    [HttpPost]
+    public IActionResult SendPassenger([FromBody] PassengerRequest passenger) 
+    {
+        
+        Console.WriteLine(passenger.PassengerId);
+        foreach (var p in passenger.Passengers)
+        {
+            DateTime birthDate = DateTime.Parse(p.BirthDate);
+
+            var Passenger = new PassengerModel
+            {
+                PassengerId = passenger.PassengerId,
+                FirstName = p.FirstName,
+                LastName = p.LastName,
+                AgeGroup = p.AgeGroup,
+                BirthDate = birthDate
+            };
+
+            _context.Passenger.Add(Passenger);
+        }
+        
+        _context.SaveChanges();   
+
+        return Ok(new { message = "Passenger Inserted"});
+    }
+
+    [HttpPost]
+    public IActionResult GetDateBooked([FromBody] DateBookedRequest req)
+    {   
+
+        var dateBooked = _context.BookedTrip.Where(t => t.TicketNo == req.TicketNo).Select(d => d.DateBooked).FirstOrDefault();
+
+        return Ok(new { message = "Send Booked Date", date = dateBooked });
+    }
+
+    [HttpPost]
+    public IActionResult SendTrip([FromBody] TripRequest trip)
+    {
+        //var getTrip = _context.Trip.Where(t => t.ArrivalTime > trip.ArrivalTime).OrderBy(t => t.ArrivalTime).Take(10).ToList();
+        var ran = new Random();
+        int ranNum = ran.Next(5, 18);
+
+        var sendTrip = (from getTrip in _context.Trip join bus in _context.Bus on getTrip.BusTripId equals bus.Id where getTrip.ArrivalTime > trip.ArrivalTime select new
+        {
+            Time = getTrip.ArrivalTime,
+            Destination = getTrip.Destination,
+            Operator = bus.Operator,
+            Gate = getTrip.Gate,
+            Bay = getTrip.Bay,
+            TripNo = getTrip.TripNo
+        }).AsNoTracking()
+        .Take(ranNum)
+        .ToList();
+
+        return Ok(new { message = "Trip data successfully sent", tripData = sendTrip});
     }
 }

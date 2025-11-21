@@ -27,8 +27,7 @@ namespace PITXOnlineBooking.Models
         [Required]
         public required string PaymentMethod { get; set; }
 
-        [Required]
-        public required DateTime DateBooked { get; set; }
+        public DateTime DateBooked { get; set; } = DateTime.Now;
         
         public DateTime CreatedAt { get; set; } = DateTime.Now;
     }    

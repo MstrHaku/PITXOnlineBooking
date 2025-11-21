@@ -5,7 +5,7 @@
 <div class="payment">
     <div class="booking_summary_con">
         <div class="booking_timer_con">
-            <p>Please compute the booking within <span>00:30:00</span></p>
+            <p>Please compute the booking within <span id="bookingTimer"></span></p>
         </div>
 
         <div class="trip_summary_con">
@@ -14,7 +14,7 @@
                 <div class="trip_summary_departure">
                     <p>Departure date</p>
                     <div class="trip_summary_departure_info">
-                        <p><span>Mon, Nov, 2025, 06:00 am —</span> Paranaque Integrated Terminal Exchange, Manila - Legazpi, Grand Central Terminal</p>
+                        <p><span id="departureDate">Mon, Nov, 2025, 06:00 am </span>— Paranaque Integrated Terminal Exchange, Manila - <span id="destination"></span></p>
                     </div>
                 </div>
 
@@ -22,8 +22,10 @@
                     <p>Passengers information</p>
                     <div class="passenger_list">
                         <ul>
-                            <li>John Migz Reyes, child</li>
-                            <li>Miguel Reyes, adult</li>
+                            <li> <span id="mainPassenger"></span>, <span id="mainAgeGroup"></span></li>
+                            <ul id="passengerList">
+                            
+                            </ul>
                         </ul>
                     </div>
                 </div>
@@ -75,13 +77,13 @@
     <div class="total_con" id="totalCon">
         <div class="total">
             <p><span>Total</span></p>
-            <p>₱1000 @*ViewBag.TripJson.Price*@</p>
+            <p>₱<span class="totalPrice"></span> </p>
         </div>
 
         <div class="subtotal">    
             <div class="insurance">
                 <p>Insurance</p>
-                <p>₱148</p>
+                <p>₱<span id="insurancePrice"></span></p>
             </div>
 
             <div class="taxes_and_fees">
@@ -92,25 +94,6 @@
     </div>
 
     <div class="booking_btn_con" id="bookingBtnCon">
-        <button id="payBtn" class="payBtn" onclick="location.href=`@Url.Action("GCashMain", "GCash")`">Pay ₱1.979</button>
+        <button id="payBtn" class="payBtn">Pay ₱<span class="totalPrice"></span></button>
     </div>
 </div>
-
-<script>
-    console.log("this is payment page");
-
-    const bookingMainCon = document.querySelector(".booking_main_con");
-    bookingMainCon.classList.toggle('inactive');
-
-    // PAYMENT METHOD RADIO BUTTON
-    const gcash = document.getElementById("gcash");
-    const maya = document.getElementById("maya");
-
-    gcash.addEventListener("click", () => {
-        document.getElementById("gcashBtn").click();
-    });
-
-    maya.addEventListener("click", () => {
-        document.getElementById("mayaBtn").click();
-    });
-</script>

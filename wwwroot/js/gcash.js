@@ -50,14 +50,6 @@ btn3.addEventListener('click', () => {
     paySucPop.classList.remove("active");
 });
 
-btn4.addEventListener('click', () => {
-    loginPop.classList.remove("active");
-    otpPop.classList.remove("active");
-    mpinPop.classList.remove("active");
-    payDetPop.classList.remove("active");
-    paySucPop.classList.toggle("active");
-});
-
 btn5.addEventListener('click', () => {
     loginPop.classList.remove("inactive");
     otpPop.classList.remove("active");
@@ -91,7 +83,7 @@ payAmountForm.addEventListener("submit", async function (event) {
         const data = await response.json();
 
         if (!response.ok) {
-            console.warn("Seerver error: ", data);
+            console.warn("Server error: ", data);
             amountError.textContent = data?.message || "Amount exceeded!";
             btn4.innerHTML = "Go back to merchant";
             const url = btn4.dataset.url;

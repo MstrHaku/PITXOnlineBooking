@@ -12,7 +12,7 @@
                 <p>STI College</p>
                 <div class="login_amount">
                     <p>PHP</p>
-                    <p>@*Model.GCash.Amount*@.00</p>
+                    <p>@Model.GCash.Amount.00</p>
                 </div>
             </div>
         </div>
@@ -129,7 +129,7 @@
                                 <div class="amount_con">
                                     <div class="amount">
                                         <p>PHP</p>
-                                        <p>@*Model.GCash.AvailBalance*@.00</p>
+                                        <p>@Model.GCash.AvailableBalance.00</p>
                                     </div>
 
                                     <p>Available Balance</p>
@@ -150,7 +150,7 @@
 
                             <div class="amount">
                                 <p>PHP</p>
-                                <p>@*Model.GCash.Amount*@.00<p>
+                                <p>@Model.GCash.Amount.00<p>
                             </div>
                         </div>
                     </div>
@@ -161,7 +161,7 @@
 
                     <div class="total_amount">
                         <p class="currency">PHP</p>
-                        <p><span id="totalAmount">@*Model.GCash.Amount*@</span>.00</p>
+                        <p><span id="totalAmount">@Model.GCash.Amount</span>.00</p>
                     </div>
                 </div>
             </div>
@@ -171,9 +171,9 @@
             <p>Please review to ensure that the details are correct before you proceed</p>
             <div class="btn_con">
                 <div class="main_btn">
-                    <form id="payAmountForm">
-                        <button type="submit" id="btn4"> <!--data-url="@*Url.Action("Main", "Home")*@"-->
-                            PAY PHP <span>@*@*Model.GCash.Amount*@.00</span>
+                    <form id="payAmountForm" action="GetAvailBalance">
+                        <button type="submit" id="btn4" data-url="@Url.Action("Main", "Home")"> 
+                            PAY PHP <span>@Model.GCash.Amount.00</span>
                         </button>
                     </form>
 
@@ -212,7 +212,7 @@
                         <p>Total amount</p>
                         <div class="amount">
                             <p>PHP</p>
-                            <p>@*Model.GCash.Amount*@.00</p>
+                            <p>@Model.GCash.Amount.00</p>
                         </div>
                     </div>
                 </div>

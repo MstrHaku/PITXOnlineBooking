@@ -6,7 +6,7 @@
 
     <div class="booking_summary_con">
         <div class="booking_timer_con">
-            <p>Please compute the booking within <span>00:30:00</span></p>
+            <p>Please compute the booking within <span id="bookingTimer">00:30:00</span></p>
         </div>
 
         <div class="trip_summary_con">
@@ -15,8 +15,8 @@
                 <div class="trip_summary_departure">
                     <p>Departure date</p>
                     <div class="trip_summary_departure_info">
-                        <p><span>Mon, Nov, 2025, 06:00 am —</span> Paranaque Integrated Terminal Exchange, Manila - Legazpi, Grand Central Terminal</p>
-                    </div>
+                        <p><span id="departureTime">Mon, Nov, 2025, 06:00 am</span>— Paranaque Integrated Terminal Exchange, Manila - <span id="destination"></span></p>
+                    </div> 
                 </div>
 
 
@@ -34,13 +34,13 @@
                     <p>Mobile</p>
                     <div class="mobile_input">
                         <label for="mobile">+63</label>
-                        <input type="numerical" name="mobile" id="mobile">
+                        <input type="number" class="input" name="mobile" id="mobile" autocomplete="off" required>
                     </div>
                 </div>
 
                 <div class="passenger_email_input">
                     <p>Email</p>
-                    <input type="text" name="email" id="email">
+                    <input type="email" class="input" name="email" id="email" required>
                 </div>
             </div>
         </div>
@@ -51,50 +51,29 @@
                 <div class="passenger_info_input_con">
                     <div class="passenger_info_input">
                         <p>First Name</p>
-                        <input type="text" name="firstName" id="firstName">
+                        <input type="text" class="input" name="firstName" id="firstName">
                     </div>
 
                     <div class="passenger_info_input">
                         <p>Last Name</p>
-                        <input type="text" name="lastName" id="lastName">
+                        <input type="text" class="input" name="lastName" id="lastName">
                     </div>
                 
                     <div class="passenger_info_input">
                         <p>Date of Birth</p>
-                        <input class="dateInput" type="date" name="firstName" id="firstName">
+                        <input class="dateInput" class="input" type="date" name="birthDate" id="birthDate">
                     </div>
                 </div>
             </div>
 
-            <div class="extra_passenger_con">
-                <div class="remove_passenger_con">
-                    <div class="trash_icon">
-                        <img src="~/icons/trash.svg" alt="trash">
-                    </div>
-                    <p>Remove</p>
-                </div>
-                <p>Passenger 2</p>
-                <div class="passenger_info_input_con">
-                    <div class="passenger_info_input">
-                        <p>First Name</p>
-                        <input type="text" name="firstName" id="firstName">
-                    </div>
-
-                    <div class="passenger_info_input">
-                        <p>Last Name</p>
-                        <input type="text" name="lastName" id="lastName">
-                    </div>
-                
-                    <div class="passenger_info_input">
-                        <p>Date of Birth</p>
-                        <input class="dateInput" type="date" name="firstName" id="firstName">
-                    </div>
-                </div>
+            <div id="passengerCon" class="extra_passenger_main">
+                <!-- EXTRA PASSENGER CON -->
             </div>
+            
         </div>
         
         <div class="add_passenger_con">
-            <div class="add_passenger">
+            <div class="add_passenger" id="addPassengerBtn">
                 <div class="add_icon">
                     <img src="~/icons/add.svg" alt="addIcon">
                 </div>
@@ -116,8 +95,8 @@
         <div class="travel_insurance_info_con">
             <div class="travel_insurance_input_con">
                 <p>Insurance Package</p>
-                <div class="insurance_input" id="insuranceBtn">
-                    <p>Package C = ₱148 (1 x 1 pax)</p> 
+                <div class="insurance_input inputTag" id="insuranceBtn">
+                    <p class="insuranceBtnText">Package C = ₱148 (1 x <span class="insurancePax"></span> pax)</p> 
                     <div class="dropdownArrow">
                         <img src="~/icons/dropdownArrow.svg" alt="dropdownArrow">
                     </div>
@@ -126,25 +105,25 @@
                 <!-- INSURANCE POP UP -->
                 <div class="insurance_popUp" id="insurancePopUp">
                     <div class="insurance_input">
-                        <p>Package C = ₱148 (1 x 1 pax)</p>
+                        <p class="insuranceBtnText" >Package C = ₱148 (1 x <span class="insurancePax"></span> pax)</p>
                     </div>
 
                     <div class="insurance_popUp_choice">
                         <ul>
-                            <li>
-                                <p>No insurance</p>
+                            <li id="noInsurance">
+                                <p>No Insurance</p>
                             </li>
 
-                            <li>
-                                <p>Package A = ₱332 (1 x 1 pax)</p>
+                            <li id="packageA">
+                                <p>Package A = ₱332 (1 x <span class="insurancePax"></span> pax)</p>
                             </li>
                             
-                            <li>
-                                <p>Package B = ₱222 (1 x 1 pax)</p>
+                            <li id="packageB">
+                                <p>Package B = ₱222 (1 x <span class="insurancePax"></span> pax)</p>
                             </li>
 
-                            <li>
-                                <p>Package C = ₱148 (1 x 1 pax)</p>
+                            <li id="packageC">
+                                <p>Package C = ₱148 (1 x <span class="insurancePax"></span> pax)</p>
                             </li>
                         </ul>
                     </div>
@@ -169,13 +148,13 @@
     <div class="total_con" id="totalCon">
         <div class="total">
             <p><span>Total</span></p>
-            <p>₱1000 @*ViewBag.TripJson.Price*@</p>
+            <p>₱<span id="totalPrice"></span></p>
         </div>
 
         <div class="subtotal">    
             <div class="insurance">
                 <p>Insurance</p>
-                <p>₱148</p>
+                <p>₱<span id="insurance" ></span></p>
             </div>
 
             <div class="taxes_and_fees">
@@ -186,6 +165,6 @@
     </div>
 
     <div class="booking_btn_con" id="bookingBtnCon">
-        <button id="nextBtn" onclick="location.href=`@Url.Action((string)@ViewBag.Page, "Home")`">Next</button>
+        <button id="nextBtn">Next</button>
     </div>
 </div>

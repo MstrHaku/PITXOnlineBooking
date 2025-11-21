@@ -41,7 +41,7 @@
                 <div class="passenger_con">
                     <div class="passenger_category">
                         <p><span>Children</span></p>
-                        <p>2 to 11 Years</p>
+                        <p>Below 11 Years</p>
                     </div>
 
                     <div class="counter_con">
@@ -59,18 +59,18 @@
 
                 <div class="passenger_con">
                     <div class="passenger_category">
-                        <p><span>Infants</span></p>
-                        <p>Below 2 Years</p>
+                        <p><span>Seniors</span></p>
+                        <p>65 Above - 20% discount</p>
                     </div>
 
                     <div class="counter_con">
-                        <div class="subtract" id="subInfant">
+                        <div class="subtract" id="subSenior">
                             <img src="~/icons/subtract.svg" alt="subtract">
                         </div>
 
-                        <span id="noOfInfant">0</span>
+                        <span id="noOfSenior">0</span>
 
-                        <div class="add" id="addInfant">
+                        <div class="add" id="addSenior">
                             <img src="~/icons/add.svg" alt="add">
                         </div>
                     </div>
@@ -82,7 +82,7 @@
             </div>
         </div>
 
-        <div class="passenger_input" id="passengerInput">
+        <div class="passenger_input inputTag" id="passengerInput">
             <div class="pass_icon">
                 <img src="~/icons/user.svg" alt="user">
             </div>
@@ -207,5 +207,5 @@
 
     <div class="busPic_popUp outside" id="busPicOutsidePopUp">
         <img src="@ViewBag.TripJson.ImgOutside" alt="bus">
-    </div>
+    </div>  
 }

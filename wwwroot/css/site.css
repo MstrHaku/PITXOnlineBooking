@@ -13,6 +13,10 @@
   --light-blue: #007CFF;
   --green: #02B464;
   --footer-grey: #414042;
+  --boarding: #6209D4;
+  --status: #007CFF;
+  --delayed: #FEC800;
+  --departed: #00BF00;
 
   --lightweight: 350;
   --regular: 400;
@@ -34,6 +38,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  cursor: default;
 }
 
 *:focus {
@@ -83,6 +88,7 @@ input {
   font-size: 1em;
   font-weight: var(--semibold);
   width: 100%;
+  cursor: pointer;
 }
 
 .activeBtn {
@@ -92,6 +98,22 @@ input {
 
 .inactiveBtn {
   display: none !important;
+}
+
+.inputTag, .inputTag * {
+  cursor: pointer !important;
+}
+
+/* Chrome, Safari, Edge */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
 }
 /* HOME MAIN ***********************************************************************************************************************/
 /* NAVBAR */
@@ -232,7 +254,7 @@ section {
 }
 
 .live_bus_schedule_top h1 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .live_bus_schedule_top_left {
@@ -333,15 +355,23 @@ section {
 
 .status {
   text-align: start !important;
-  color: #007CFF;
+  color: var(--status);
 }
 
 .boarding {
-  color: var(--light-blue);
+  color: var(--boarding);
 }
 
 .cancelled {
   color: var(--main-color-red);
+}
+
+.delayed {
+  color: var(--delayed);
+}
+
+.departed {
+  color: var(--departed);
 }
 
 /* BOOKING ***********************************************************************************************************************/
@@ -1076,6 +1106,10 @@ section {
   width: 35px;
 }
 
+.itinerary_bus_logo img {
+  border-radius: var(--radius);
+}
+
 .bus_logo_con p {
   font-weight: bold;
   font-size: 0.95rem;
@@ -1215,6 +1249,7 @@ section {
   flex-direction: column;
   gap: 15px;
   padding: 20px;
+  font-size: 0.9rem;
 }
 
 .booking_summary_con {
@@ -1228,7 +1263,7 @@ section {
 .booking_timer_con p {
   text-align: start;
   font-weight: var(--semibold);
-  font-size: 0.95rem;
+  font-size: 1em;
 }
 
 .booking_timer_con span {
@@ -1269,13 +1304,18 @@ section {
 
 .trip_summary_departure_info p {
   color: var(--grey);
-  font-size: 0.95rem;
+  font-size: 0.95em;
   font-weight: var(--regular);
 }
 
 .trip_summary_departure_info span {
   font-weight: var(--semibold);
   color: var(--black);
+}
+
+#destination {
+  font-weight: var(--regular) !important;
+  color: var(--grey);
 }
 
 .passenger_detail_con {
@@ -1306,7 +1346,7 @@ section {
 
 .passenger_contact_input p {
   font-weight: var(--regular);
-  font-size: 0.95rem;
+  font-size: 0.95em;
 }
 
 .passenger_mobile_input {
@@ -1355,6 +1395,12 @@ section {
   padding-bottom: 10px;
 }
 
+.extra_passenger_main {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
 .extra_passenger_con {
   display: flex;
   flex-direction: column;
@@ -1387,6 +1433,19 @@ section {
   gap: 3px;
 }
 
+.trash {
+  display: flex;
+  gap: var(--text-space);
+}
+
+.trash:hover {
+  cursor: pointer;
+}
+
+.trash, .trash * {
+  cursor: pointer;
+}
+
 .remove_passenger_con p {
   color: var(--grey);
   font-weight: var(--regular);
@@ -1413,6 +1472,9 @@ section {
 .add_passenger {
   display: flex;
   gap: 10px;
+}
+
+.add_passenger * {
   cursor: pointer;
 }
 
@@ -1542,13 +1604,24 @@ section {
   padding: 5px 0px;
 }
 
-.insurance_popUp_choice li:focus {
+.insurance_popUp_choice li * {
   cursor: pointer;
+}
+
+.insurance_popUp_choice li:hover {
+  cursor: pointer;
+  background: rgba(128, 128, 128, 0.25);
+  border-radius: 5px;
+  padding: 5px;
 }
 
 .insurance_popUp_choice ul li:last-child {
   border-bottom: none;
   padding: 5px 0px 0px 0px;
+}
+
+.insurancePax {
+  font-weight: var(--regular) !important;
 }
 
 /* CONFIRMATION */
@@ -1557,6 +1630,7 @@ section {
   flex-direction: column;
   padding: 20px;
   overflow-y: auto;
+  font-size: 0.9rem;
 }
 
 .passenger_list {
@@ -1600,6 +1674,7 @@ section {
   gap: 10px;
   padding: 20px;
   overflow: auto;
+  font-size: 0.9rem;
 }
 
 .payment_con {
@@ -1630,7 +1705,7 @@ section {
 }
 
 .gcash_info_con p {
-  font-size: 1rem;
+  font-size: 1em;
   font-weight: var(--semibold);
 }
 
@@ -1656,7 +1731,7 @@ section {
 }
 
 .maya_info_con p {
-  font-size: 0.9rem;
+  font-size: 0.9em;
   font-weight: var(--regular);
   color: var(--grey);
 }
@@ -1668,7 +1743,7 @@ section {
 
 .maya_logo_con p {
   font-weight: var(--semibold);
-  font-size: 1rem;
+  font-size: 1em;
   color: var(--black);
 }
 
@@ -1711,7 +1786,7 @@ input[type="radio"] {
 }
 
 .receipt_top_con p {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: bold;
 }
 
@@ -1754,12 +1829,20 @@ input[type="radio"] {
 }
 
 .receipt_main_con_top span {
-  font-weight: var(--semibold) !important;
+  font-weight: var(--semibold);
+}
+
+.ticketNo {
+  font-weight: var(--regular) !important;
+}
+
+.ticketNo.popUpReceipt {
+  color: var(--main-color-blue) !important; 
 }
 
 .receipt_head {
   font-weight: var(--bold) !important;
-  font-size: 1rem !important;
+  font-size: 1em !important;
 }
 
 .receipt_information_con {
@@ -1783,12 +1866,12 @@ input[type="radio"] {
 
 .receipt_info p {
   font-weight: var(--semibold);
-  font-size: 0.95rem;
+  font-size: 0.9em;
 }
 
 .info_head {
   color: var(--grey) !important;
-  font-size: 0.9rem !important;
+  font-size: 0.9em !important;
   font-weight: var(--regular) !important; 
 }
 
@@ -1887,6 +1970,7 @@ footer {
   flex-direction: column;
   background: white;
   border-radius: var(--radius);
+  font-size: 0.95rem;
 }
 
 .payment_success p {
@@ -1929,6 +2013,7 @@ footer {
   background: var(--white);
   border-radius: var(--radius);
   max-width: 690px;
+  font-size: 0.9rem;
 }
 
 .receipt_popUp_top {
@@ -2001,6 +2086,10 @@ footer {
   padding-left: 50px;
 }
 
+#passengerList {
+  padding: 0px !important;
+}
+
 .receipt_popUp_trip_info_con {
   display: flex;
   flex-direction: column;
@@ -2041,6 +2130,11 @@ footer {
   color: var(--black);
 }
 
+#desPopUpReceipt {
+  font-weight: var(--regular) !important;
+  color: var(--grey);
+}
+
 .receipt_popUp_pay_method_con {
   display: flex;
   align-items: center;
@@ -2056,6 +2150,10 @@ footer {
   display: flex;
   align-self: flex-end;
   width: 65px;
+}
+
+.receipt_popUp_payment_logo.gcash {
+  align-self: center;
 }
 
 /* BUS PIC */
@@ -2075,6 +2173,60 @@ footer {
   border-radius: var(--radius);
 }
 
+/* POP UP ALERT */
+.pop_up_alert_con {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--box-shadow);
+  padding: 10px;
+  display: none;
+  gap: 10px;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  height: fit-content;
+  max-width: 90%;
+}
+
+.close {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 10px;
+  cursor: pointer;
+}
+
+.pop_up_alert_heading {
+  position: relative;
+  width: 100%;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pop_up_alert_heading p {
+  font-size: 1.1rem;
+  font-weight: var(--semibold);
+  color: var(--main-color-red);
+  border-bottom: 1px solid var(--main-color-red);
+  padding: 0px 15px;
+}
+
+.pop_up_alert_para {
+  font-weight: var(--semibold);
+  height: fit-content;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+.pop_up_alert_para {
+  font-size: 1rem;
+}
 
 /* MEDIA QUERY ***********************************************************************************************************************/
 
@@ -2332,7 +2484,7 @@ footer {
   }
 
   .live_bus_schedule_top h1 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
   }
 
   .live_bus_schedule_date_con h1 {
@@ -2457,7 +2609,7 @@ footer {
   }
 
   .live_bus_schedule_top h1 {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   /* BOOKING */

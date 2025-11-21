@@ -56,9 +56,11 @@ if (destinationInput) {
     tomorrowDate.setDate(todayDate.getDate() + 1);
 
     // TODAY AND TOMORROW
-    const today = todayDate.toISOString().split("T")[0];
-    const tomorrow = tomorrowDate.toISOString().split("T")[0];
+    const today = todayDate.toLocaleDateString("en-CA");
+    const tomorrow = tomorrowDate.toLocaleDateString("en-CA");
     let datePicked;
+
+    console.log("Todays Date: ", today);
 
     // DESTINATION VARIABLE GLOBAL  
     let destination = destinationInput.textContent;
@@ -89,8 +91,8 @@ if (destinationInput) {
             body: JSON.stringify({ TripDate: datePicked, Destination: destination })
         }).then(response => response.json())
         .then(data => {
-            console.log("CHECK TRIP Destination: ", destination, " Trip Date: ", today);
-            console.log("Server response: ", data);
+            console.log("CHECK TRIP Destination: ", destination, " Trip Date: ", today); // REMOVE THIS
+            console.log("Server response: ", data); // REMOVE THIS
 
             // DATE TIME FUNCTION
             function formatDateTime(dateTime) {
@@ -186,7 +188,7 @@ if (destinationInput) {
             const d = new Date(date);
             d.setDate(date.getDate() + i);
             
-            const dISO = d.toISOString().split("T")[0];
+            const dISO = d.toLocaleDateString("en-CA");
         
             const li  = document.createElement("li");
             li.setAttribute("data-date", dISO);
@@ -228,7 +230,7 @@ if (destinationInput) {
     }
 
     function selectDate(date) {
-        datePicked = date.toISOString().split("T")[0];
+        datePicked = date.toLocaleDateString("en-CA");
 
         const errorBookingBus = document.querySelector(".error_booking_bus");
         console.log("date picked: ", datePicked, " today: ", today);
@@ -247,8 +249,8 @@ if (destinationInput) {
             body: JSON.stringify({ TripDate: datePicked, Destination: destination })
         }).then(response => response.json())
         .then(data => {
-            console.log("DATE SELECTION select date: ", datePicked, " Destination: ", destination);
-            console.log("Server response :", data);
+            console.log("DATE SELECTION select date: ", datePicked, " Destination: ", destination); // REMOVE THIS
+            console.log("Server response :", data); // REMOVE THIS
 
             // PUT THE UPDATED LIST HERE
             // DATE TIME FUNCTION
@@ -348,3 +350,78 @@ if (destinationInput) {
         }
     });
 }
+
+// LIVE BUS SCHEDULE
+const liveSchedDate = document.getElementById("liveSchedDate");
+updateLiveSched();
+setInterval(updateLiveSched, 1000);
+
+
+
+// AUTOMATE LIVE BUS SCHEDULE
+const today = new Date();
+const localTime = new Date(today.getTime() - today.getTimezoneOffset()*60000).toISOString().slice(0, 19);
+console.log(localTime); // REMOVE THIS
+
+const payload = {
+    arrivalTime: localTime
+}
+
+fetch("/Home/SendTrip", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+}).then(res => res.json())
+.then(data => {
+    console.log(data.message);
+    console.log(data.tripData);
+
+    const timeCol = document.getElementById("timeCol");
+    const destinationCol = document.getElementById("destinationCol");
+    const operatorCol = document.getElementById("operatorCol");
+    const gateCol = document.getElementById("gateCol");
+    const bayCol = document.getElementById("bayCol");
+    const tripCol = document.getElementById("tripCol");
+    const statusCol = document.getElementById("statusCol");
+
+    data.tripData.forEach(row => {
+        const date = new Date(row.time);
+        const time = date.toLocaleTimeString("en-CA", {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false
+        });
+
+        const statusList = ["DELAYED", "ARRIVED", "CANCELLED", "UNLOADING", "LOADING", "DEPARTED", "BOARDING"];
+        const ran = Math.floor(Math.random() * 7);
+        const status = statusList[ran];
+
+        timeCol.innerHTML += `<div class="td">${time}</div>`;
+        destinationCol.innerHTML += `<div class="td">${row.destination}</div>`;
+        operatorCol.innerHTML += `<div class="td">${row.operator}</div>`;
+        gateCol.innerHTML += `<div class="td">${row.gate}</div>`;
+        bayCol.innerHTML += `<div class="td">${row.bay}</div>`;
+        tripCol.innerHTML += `<div class="td">${row.tripNo}</div>`;
+        statusCol.innerHTML += `<div class="td status ${status.toLowerCase()}">${status}</div>`;
+    });
+})
+.catch(err => console.log(err));
+
+
+
+// FUNCTIONS
+function updateLiveSched() {
+    const today = new Date();
+    let formatToday = today.toLocaleString("en-CA", {
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+    });
+    liveSchedDate.textContent = formatToday;
+}
+

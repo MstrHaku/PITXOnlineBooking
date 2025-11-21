@@ -1,4 +1,7 @@
 
+IMPORTANT AS FUCK!!! always use lowercase for table and column name!!!!!
+
+
 TICKET FORMAT
 
 	QR Code
@@ -159,7 +162,61 @@ TICKET FORMAT
 						How do I send the JSON objecto to the next page? Using session storage
 
 						Should I put all of the insurance data inside the trip json in the itinerary action????
+
+
+
+						FIX TRIP CLEAN UP SERVICE!! It needs to delete all of of the trips today not just the current and past days but the whole day 
  
+						Differentiate the passenger age group based on their birth of date.
+
+
+						CREATE A BASE VARIABLE PRICE THE CREATE A FUNCTION FOR CALCULATING THE INSURANCE AND THE PASSENGER PAX
+						SO IT IS DYNAMIC
+
+						create a validation for each booking process
+
+								itinerary
+									- Passenger count
+
+						Check if 1 adult and 1 senior only student will use the discount not the parent
+
+							- Do not calculate the total passenenger with the discount
+
+
+							LATER DISPLAY ALL OF THE DETAILS IN RECEIPT
+
+							HOST GCASH AND MAYA API
+
+							SO WHAT WILL HAPPEN IS THE INFORMATION THAT WE NEED TO NEED INTO OUT PAYMENT GATEWAY
+
+							IS
+
+								- The hosted link of PITX (For redirect after succesfull payment)
+
+
+								LAST RESORT!!
+									Store the dtaa coming from the client in the GCash database
+
+									and use the merchant name for identification.
+
+
+			STORE THE BOOKEDTRIP DATA FIRST, THEN MAIN PASS, THEN PASS IN RECEIPT CONTROLELR -- Bad Design
+
+			CREATE A NEW OBJECT TO STORE IN THE DATABASE NOT THE WHOLE trip object
+
+
+			In the live bus sched use the tomorrow trips and based on the time today only display the
+			future trips.
+
+			create a fetch function to get the data in the trips
+
+			display only 10 trips 
+
+			get todays time and pass it in the back-end, then in the back end only get the trip that	
+			is ahead of the current time to simulate a live bus schedule 
+
+
+
 
 Buses Trip hours
 
